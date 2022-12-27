@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { User } from './user';
 
 @Component({
@@ -11,5 +12,10 @@ export class AppComponent {
   //two-way data binding
   //from model to template form
    //To create instance for constructor of class user (model)
-   userDetails = new User("Pavi","abc@gmail.com",8987349329);
+   userDetails = new User("","abc@gmail.com",8987349329);
+Email: any;
+
+   onSubmit(userForm: NgForm){
+    console.log(userForm);
+   }
 }
