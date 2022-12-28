@@ -12,10 +12,22 @@ export class AppComponent {
   //two-way data binding
   //from model to template form
    //To create instance for constructor of class user (model)
-   userDetails = new User("","abc@gmail.com",8987349329);
+   userDetails = new User("","abc@gmail.com",8987349329,'default');
 Email: any;
 
-   onSubmit(userForm: NgForm){
-    console.log(userForm);
+   onSubmit(userForm: NgForm){ 
+    console.log(userForm.value);
    }
+   categories=['Male','Female','Others'];
+   categoryHasError=true;
+   validateCategory(value:any){
+    if (value=='default'){
+      this.categoryHasError=true;
+ }
+ else{
+  this.categoryHasError=false;
+ }
+
+   }
+   
 }

@@ -5,7 +5,8 @@
         <!-- {{userform.value |json}} -->  <!--Angular Forms Value   -->
         <hr>
         <!--{{userDetails |json}}-->     <!--user model value from class to template-->   
-         
+   <!--NgForm provides overall form validation of form-->   
+   {{userform.form.valid}}   
         <div class="form-group">
             <label>Name</label>
             <input type="text" required   class="form-control" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" name="Name"[(ngModel)]="userDetails.name"/>    <!--to recognize form-control by angular use ngModel along with name attribute-->
@@ -32,7 +33,19 @@
 
                     </div>
     </div>
+    <div class="form-group">
+        <label>Gender</label>
+        <select (blur)="validateCategory(category.value)" (change)="validateCategory(category.value)"class="form-select" required #category="ngModel"[class.is-invalid]="categoryHasError && category.touched"name="gender"[(ngModel)]="userDetails.category">
+            <option value="default">Choose</option>
+            <option *ngFor="let category of categories">{{category}}</option>
+
+        </select>
+        <small class="text-danger" [class.d-none]="!categoryHasError || category.untouched">Please choose gender</small>
+        <!--This validation is only valid for value=" "empty string-->
+
+    </div>
     <br>
-    <button type="button" class="btn btn-primary">Submit</button>
+    <button  [disabled]="userform.form.invalid || categoryHasError" type="submit" class="btn btn-primary">Submit</button>
+    
     </form>
 </div>
