@@ -15,6 +15,7 @@ export class AppComponent {
    userDetails = new User();
 Email: any;
 
+ 
    onSubmit(userForm: NgForm){ 
     console.log(userForm.value);
    }
